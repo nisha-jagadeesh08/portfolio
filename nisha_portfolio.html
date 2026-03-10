@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nisha Jagadeesh – Senior Backend Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FDF9F4;
+    --terracotta: #C4623A;
+    --terracotta-light: #E8865E;
+    --terracotta-pale: #F5DDD4;
+    --forest: #2D4A3E;
+    --forest-light: #3D6455;
+    --gold: #C9973A;
+    --gold-pale: #F5ECD4;
+    --ink: #1C1A18;
+    --ink-soft: #3D3A36;
+    --muted: #8C857C;
+    --border: #E8E0D6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(250, 247, 242, 0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--terracotta);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    background: var(--terracotta-pale);
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-name em {
+    color: var(--terracotta);
+    font-style: italic;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .btn-primary {
+    background: var(--terracotta);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    border: 2px solid var(--terracotta);
+  }
+
+  .btn-primary:hover {
+    background: var(--forest);
+    border-color: var(--forest);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(44, 74, 62, 0.2);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    padding: 0.85rem 2rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 2px solid var(--border);
+    transition: all 0.25s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--terracotta);
+    font-weight: 700;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 6rem 4rem 4rem 2rem;
+  }
+
+  .hero-blob {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse at 40% 40%, var(--terracotta-pale) 0%, var(--gold-pale) 50%, transparent 70%);
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    animation: blobMorph 8s ease-in-out infinite;
+    opacity: 0.7;
+  }
+
+  @keyframes blobMorph {
+    0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+    33% { border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%; }
+    66% { border-radius: 70% 30% 50% 50% / 30% 70% 50% 60%; }
+  }
+
+  .hero-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(28, 26, 24, 0.1);
+    position: relative;
+    z-index: 2;
+    width: 360px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .hero-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--terracotta), var(--gold));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .card-name { font-weight: 600; font-size: 1rem; }
+  .card-role { font-size: 0.8rem; color: var(--muted); }
+
+  .card-location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--forest);
+    background: var(--gold-pale);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2rem;
+    width: fit-content;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .card-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .chip {
+    font-size: 0.72rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 2rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+  }
+
+  .chip-terra { background: var(--terracotta-pale); color: var(--terracotta); }
+  .chip-forest { background: #D4E8E0; color: var(--forest); }
+  .chip-gold { background: var(--gold-pale); color: #8B6820; }
+
+  .card-open {
+    background: var(--forest);
+    color: white;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .pulse-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #5EE8A0;
+    flex-shrink: 0;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section {
+    padding: 6rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+
+  .section-title span { color: var(--terracotta); font-style: italic; }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-bg-shape {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--terracotta-pale), var(--gold-pale));
+    border-radius: 30% 70% 60% 40% / 40% 50% 60% 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-inner-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    width: 80%;
+    box-shadow: 0 10px 40px rgba(28, 26, 24, 0.08);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .timeline-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+
+  .timeline-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  .timeline-co {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 1.2rem;
+  }
+
+  .about-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .highlight-box {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+  }
+
+  .highlight-box .icon { font-size: 1.3rem; margin-bottom: 0.3rem; }
+  .highlight-box strong { display: block; font-size: 0.85rem; color: var(--ink); margin-bottom: 0.2rem; }
+  .highlight-box span { font-size: 0.75rem; color: var(--muted); }
+
+  /* ── PROJECTS ── */
+  #projects {
+    background: var(--ink);
+    max-width: 100%;
+    padding: 6rem 4rem;
+  }
+
+  #projects .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #projects .section-label { color: var(--terracotta-light); }
+  #projects .section-title { color: var(--cream); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-4px);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .icon-terra { background: rgba(196, 98, 58, 0.2); }
+  .icon-forest { background: rgba(45, 74, 62, 0.3); }
+  .icon-gold { background: rgba(201, 151, 58, 0.2); }
+
+  .project-company {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: rgba(250, 247, 242, 0.55);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-metrics {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+  }
+
+  .metric {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    background: rgba(201, 151, 58, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-family: 'DM Mono', monospace;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--warm-white); max-width: 100%; padding: 6rem 4rem; }
+  #skills .inner { max-width: 1200px; margin: 0 auto; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .skill-category {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+
+  .skill-category:hover {
+    box-shadow: 0 8px 32px rgba(196, 98, 58, 0.1);
+  }
+
+  .skill-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .skill-cat-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .skill-cat-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+
+  .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-pill {
+    font-size: 0.78rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    font-family: 'DM Mono', monospace;
+    background: var(--cream);
+    color: var(--ink-soft);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .skill-pill:hover {
+    background: var(--terracotta);
+    color: white;
+    border-color: var(--terracotta);
+    transform: translateY(-1px);
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .achievement-card {
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .achievement-card:hover { transform: translateY(-4px); }
+
+  .ach-terra { background: var(--terracotta-pale); }
+  .ach-forest { background: #D4E8E0; }
+  .ach-gold { background: var(--gold-pale); }
+
+  .ach-icon { font-size: 2rem; margin-bottom: 1rem; }
+
+  .ach-award {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.4rem;
+  }
+
+  .ach-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .ach-desc {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  .ach-company {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* ── ARTICLE FEATURE ── */
+  .article-feature {
+    background: linear-gradient(135deg, var(--forest), var(--forest-light));
+    border-radius: 20px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .article-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: white;
+    line-height: 1.35;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-pub {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .article-link {
+    background: white;
+    color: var(--forest);
+    padding: 0.75rem 1.8rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .article-link:hover {
+    background: var(--gold-pale);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER / CONTACT ── */
+  footer {
+    background: var(--ink);
+    padding: 4rem;
+    text-align: center;
+  }
+
+  .footer-inner { max-width: 600px; margin: 0 auto; }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-sub {
+    font-size: 0.85rem;
+    color: rgba(250,247,242,0.45);
+    margin-bottom: 2rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: rgba(250,247,242,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 2rem;
+  }
+
+  .contact-link:hover { color: var(--terracotta-light); border-color: var(--terracotta); }
+
+  .footer-copy {
+    font-size: 0.72rem;
+    color: rgba(250,247,242,0.25);
+    margin-top: 2rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 8rem 1.5rem 4rem; }
+    #about { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+    .about-visual { display: none; }
+    section, #projects, #skills, #achievements { padding: 4rem 1.5rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .achievements-grid { grid-template-columns: 1fr; }
+    footer { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Nisha Jagadeesh</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">✦ Open to UK / EU Opportunities</div>
+    <h1 class="hero-name">Nisha<br><em>Jagadeesh</em></h1>
+    <p class="hero-title">Senior Backend Engineer · Cloud & Distributed Systems</p>
+    <p class="hero-desc">
+      I build the invisible backbone of enterprise software — cloud SDKs, IAM security layers, distributed databases, and CI/CD pipelines that scale to millions of operations. Based in Bengaluru, relocating to UK or EU.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div>
+        <span class="stat-num">1016</span>
+        <span class="stat-label">Tests Written</span>
+      </div>
+      <div>
+        <span class="stat-num">4</span>
+        <span class="stat-label">Languages Led</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-blob"></div>
+    <div class="hero-card">
+      <div class="hero-card-header">
+        <div class="avatar">NJ</div>
+        <div>
+          <div class="card-name">Nisha Jagadeesh</div>
+          <div class="card-role">Senior Backend Engineer @ IBM</div>
+        </div>
+      </div>
+      <div class="card-location">✈️ &nbsp;Seeking relocation · UK / EU</div>
+      <div class="card-chips">
+        <span class="chip chip-terra">Java 17</span>
+        <span class="chip chip-terra">Python</span>
+        <span class="chip chip-forest">AWS S3</span>
+        <span class="chip chip-forest">IBM COS</span>
+        <span class="chip chip-gold">IAM</span>
+        <span class="chip chip-terra">Kubernetes</span>
+        <span class="chip chip-gold">Scrum Master</span>
+        <span class="chip chip-forest">CI/CD</span>
+      </div>
+      <div class="card-open">
+        <div class="pulse-dot"></div>
+        <span>Available for Senior Backend, Cloud, or Staff Engineer roles in UK / EU</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal">
+    <div class="about-bg-shape">
+      <div class="about-inner-card">
+        <div style="font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;">Career Journey</div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <div class="timeline-year">2025 – Present</div>
+            <div class="timeline-co">IBM ISDL · Senior Backend Engineer</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--gold)"></div>
+          <div>
+            <div class="timeline-year">2021 – 2025</div>
+            <div class="timeline-co">Rocket Software · Software Engineer II → I</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="background:var(--forest)"></div>
+          <div>
+            <div class="timeline-year">2017 – 2021</div>
+            <div class="timeline-co">Infosys · Systems Engineer</div>
+          </div>
+        </div>
+        <div class="timeline-item" style="margin-bottom:0">
+          <div class="timeline-dot" style="background:var(--muted)"></div>
+          <div>
+            <div class="timeline-year">2013 – 2017</div>
+            <div class="timeline-co">B.E. Computer Science · DSCE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">Building systems<br>that <span>don't break</span></h2>
+    <p>
+      I'm a backend engineer who thrives at the intersection of cloud infrastructure and developer experience. Over 8 years, I've worked across IBM's cloud storage SDK, enterprise databases (DB2), and large-scale distributed systems.
+    </p>
+    <p>
+      Currently at IBM, I led the migration of the entire Cloud Object Storage SDK to AWS S3-compliant architecture — a project spanning Java, Python, Go, and Node.js, shipped 2 weeks ahead of schedule. I also hold a Disciplined Agile Scrum Master certification and have mentored teams across continents.
+    </p>
+    <div class="about-highlights">
+      <div class="highlight-box">
+        <div class="icon">☁️</div>
+        <strong>Cloud Native</strong>
+        <span>IBM COS, AWS S3, IAM, HMAC</span>
+      </div>
+      <div class="highlight-box">
+        <div class="icon">🔐</div>
+        <strong>Security Focus</strong>
+        <span>IAM, vended credentials, least-privilege</span>
+      </div>
+      <div class="highlight-box">
+        <div class="icon">👥</div>
+        <strong>Team Leader</strong>
+        <span>Scrum Master, global team mentor</span>
+      </div>
+      <div class="highlight-box">
+        <div class="icon">✍️</div>
+        <strong>Technical Writer</strong>
+        <span>Published on IBM & Medium</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div id="projects">
+  <div class="inner">
+    <div class="section-label reveal">Work Highlights</div>
+    <h2 class="section-title reveal">Projects that <span>moved the needle</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-icon icon-terra">☁️</div>
+        <div class="project-company">IBM ISDL · 2025</div>
+        <div class="project-title">IBM COS SDK v1 → v2 Migration</div>
+        <p class="project-desc">Architected and led the full migration of IBM's Cloud Object Storage SDK using a Smithy-based middleware architecture, achieving 100% AWS S3 compliance across 4 languages.</p>
+        <div class="project-metrics">
+          <span class="metric">100% S3 compliant</span>
+          <span class="metric">2 weeks early</span>
+          <span class="metric">1016 tests</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Java 17</span>
+          <span class="tag">Python</span>
+          <span class="tag">Go</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">IAM</span>
+          <span class="tag">Smithy</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon icon-forest">🔒</div>
+        <div class="project-company">IBM ISDL · 2025</div>
+        <div class="project-title">Secure Vended Credentials System</div>
+        <p class="project-desc">Designed and implemented a Python-based solution for vended credentials, enabling temporary, least-privilege access for automated workflows — a critical security pattern for enterprise cloud.</p>
+        <div class="project-metrics">
+          <span class="metric">Zero standing permissions</span>
+          <span class="metric">Least-privilege</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Python</span>
+          <span class="tag">IAM</span>
+          <span class="tag">HMAC</span>
+          <span class="tag">Security</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon icon-gold">🗄️</div>
+        <div class="project-company">Rocket Software · 2022–2025</div>
+        <div class="project-title">IBM DB2 Feature Delivery & Performance</div>
+        <p class="project-desc">Oversaw end-to-end delivery of 8 major DB2 features. Built a Round Robin load distribution strategy for DB2 data sharing that measurably improved system observability and performance.</p>
+        <div class="project-metrics">
+          <span class="metric">+25% client satisfaction</span>
+          <span class="metric">+20% visibility</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">IBM Db2</span>
+          <span class="tag">Java</span>
+          <span class="tag">JDBC</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Scrum</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon icon-terra">🔧</div>
+        <div class="project-company">Rocket Software · 2021–2022</div>
+        <div class="project-title">Java 16+ JDK Compatibility & L3 Support</div>
+        <p class="project-desc">Proactively ensured Java 16+ compatibility, eliminating security vulnerabilities and reducing user-reported issues. Built an independent config validation tool, cutting configuration errors by 5%.</p>
+        <div class="project-metrics">
+          <span class="metric">−20% user issues</span>
+          <span class="metric">37% CRM conversion</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Java</span>
+          <span class="tag">JDBC</span>
+          <span class="tag">tcpdump</span>
+          <span class="tag">L3 Support</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon icon-forest">💡</div>
+        <div class="project-company">Rocket Software · 2024</div>
+        <div class="project-title">AI-Driven Developer Productivity Plugin</div>
+        <p class="project-desc">Created an AI/ML plugin for code suggestions and performance tuning during internal hackathon. Won the Popular Choice Award and established new AI development standards for the team.</p>
+        <div class="project-metrics">
+          <span class="metric">🏆 Popular Choice Award</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">AI/ML</span>
+          <span class="tag">Eclipse Plugin</span>
+          <span class="tag">GitHub Copilot</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-icon icon-gold">✍️</div>
+        <div class="project-company">IBM ISDL · 2025</div>
+        <div class="project-title">Technical Article: IBM COS Data Lifecycle</div>
+        <p class="project-desc">Published deep-dive on Lifecycle Rules, WORM, and Object Lock in IBM COS — originally an internal IBM blog, now public on Medium. Demonstrates both technical depth and communication skills.</p>
+        <div class="project-metrics">
+          <span class="metric">IBM Internal → Public</span>
+        </div>
+        <div class="project-tags">
+          <span class="tag">IBM COS</span>
+          <span class="tag">WORM</span>
+          <span class="tag">Object Lock</span>
+          <span class="tag">Writing</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="article-feature reveal">
+      <div>
+        <div class="article-label">📝 Published Article</div>
+        <div class="article-title">Lifecycle Rules, WORM, and Object Lock in IBM COS:<br>Making Sense of Your Data's Journey</div>
+        <div class="article-pub">Originally published as an internal IBM blog · Now on Medium</div>
+      </div>
+      <a href="https://medium.com/@nisha.0895/lifecycle-rules-worm-and-object-lock-in-ibm-cos-making-sense-of-your-datas-journey-fd61c6388bb9" target="_blank" class="article-link">Read on Medium →</a>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills">
+  <div class="inner">
+    <div class="section-label reveal">Technical Skills</div>
+    <h2 class="section-title reveal">My <span>toolkit</span></h2>
+    <div class="skills-grid">
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:var(--terracotta-pale)">💻</div>
+          <div class="skill-cat-name">Languages & Frameworks</div>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Java 17</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">REST APIs</span>
+          <span class="skill-pill">Jakarta EE</span>
+          <span class="skill-pill">Hibernate</span>
+          <span class="skill-pill">Maven</span>
+          <span class="skill-pill">Apache Tomcat</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:#D4E8E0">☁️</div>
+          <div class="skill-cat-name">Cloud & Infrastructure</div>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">IBM Cloud Object Storage</span>
+          <span class="skill-pill">AWS S3</span>
+          <span class="skill-pill">IAM</span>
+          <span class="skill-pill">HMAC</span>
+          <span class="skill-pill">Kubernetes</span>
+          <span class="skill-pill">Docker</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:var(--gold-pale)">🗄️</div>
+          <div class="skill-cat-name">Databases & Systems</div>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">IBM Db2</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">JDBC</span>
+          <span class="skill-pill">UNIX</span>
+        </div>
+      </div>
+
+      <div class="skill-category reveal">
+        <div class="skill-cat-header">
+          <div class="skill-cat-icon" style="background:#E8D4F0">⚙️</div>
+          <div class="skill-cat-name">DevOps & Tools</div>
+        </div>
+        <div class="skill-pills">
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">Jenkins</span>
+          <span class="skill-pill">Bitbucket</span>
+          <span class="skill-pill">JIRA</span>
+          <span class="skill-pill">GitHub Copilot</span>
+          <span class="skill-pill">Claude Code</span>
+          <span class="skill-pill">Test Automation</span>
+          <span class="skill-pill">tcpdump</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-label reveal">Recognition</div>
+  <h2 class="section-title reveal">Awards & <span>Achievements</span></h2>
+  <div class="achievements-grid">
+
+    <div class="achievement-card ach-terra reveal">
+      <div class="ach-icon">🏆</div>
+      <div class="ach-award">Hackathon · 2024</div>
+      <div class="ach-title">Popular Choice Award</div>
+      <p class="ach-desc">Won the popular vote at Rocket Software's internal hackathon for building an AI-driven plugin for code suggestions and performance tuning — directly improving developer productivity.</p>
+      <div class="ach-company">🏢 Rocket Software</div>
+    </div>
+
+    <div class="achievement-card ach-forest reveal">
+      <div class="ach-icon">⚡</div>
+      <div class="ach-award">Recognition Award</div>
+      <div class="ach-title">Insta Award — Automation Excellence</div>
+      <p class="ach-desc">Recognised by Infosys for exceptional performance in backend development and automation, delivering a new billing solution that drove significant client satisfaction.</p>
+      <div class="ach-company">🏢 Infosys</div>
+    </div>
+
+    <div class="achievement-card ach-gold reveal">
+      <div class="ach-icon">📜</div>
+      <div class="ach-award">Certification · PMI</div>
+      <div class="ach-title">Disciplined Agile Scrum Master</div>
+      <p class="ach-desc">Certified by the Project Management Institute (PMI) in Disciplined Agile Scrum Master practices — applied directly in coaching teams and ensuring on-time delivery at Rocket Software.</p>
+      <div class="ach-company">🏢 Project Management Institute</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER / CONTACT -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div class="footer-name">Let's connect</div>
+    <p class="footer-sub">Open to Senior Backend Engineer & Cloud roles in the UK / EU</p>
+    <div class="contact-links">
+      <a href="mailto:nisha.0895@gmail.com" class="contact-link">✉️ nisha.0895@gmail.com</a>
+      <a href="tel:+918553875804" class="contact-link">📞 +91-8553875804</a>
+      <a href="https://www.linkedin.com/in/nisha-jagadeesh" target="_blank" class="contact-link">💼 LinkedIn</a>
+      <a href="https://medium.com/@nisha.0895" target="_blank" class="contact-link">✍️ Medium</a>
+    </div>
+    <p class="footer-copy">© 2026 Nisha Jagadeesh · Bengaluru, India · Open to relocation</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section, div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--terracotta)' : '';
+    });
+  });
+</script>
+</body>
+</html>
